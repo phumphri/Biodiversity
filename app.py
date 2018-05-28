@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[105]:
+# In[ ]:
 
 
 import psycopg2
@@ -26,7 +26,7 @@ from flask import (
 app = Flask(__name__)
 
 
-# In[7]:
+# In[ ]:
 
 
 print("Defining connect_to_postgres()")
@@ -39,6 +39,10 @@ def connect_to_postgres():
             conn = psycopg2.connect(os.environ['LOCAL_POSTGRES'])
             print('Connection okay.')
             return conn
+        elif (hostname == 'DESKTOP-S08TN4O'):  
+            conn = psycopg2.connect(os.environ['LOCAL_POSTGRES'])
+            print('Connection okay.')
+            return conn
         else:
             conn = psycopg2.connect(os.environ['AWS_POSTGRES'])
             print('Connection okay.')
@@ -47,7 +51,7 @@ def connect_to_postgres():
         print('Connection failed:', e)
 
 
-# In[87]:
+# In[ ]:
 
 
 print("Defining query_postgres(sql).")
@@ -76,7 +80,7 @@ def query_postgres(sql):
     return rows
 
 
-# In[8]:
+# In[ ]:
 
 
 print("Defining disconnect_from_posgress(conn).")
@@ -88,7 +92,7 @@ def disconnect_from_postgres(conn):
         print('Close failed:', e)
 
 
-# In[9]:
+# In[ ]:
 
 
 # Test postgres connection.
@@ -96,7 +100,7 @@ def disconnect_from_postgres(conn):
 # disconnect_from_postgres(conn)
 
 
-# In[184]:
+# In[ ]:
 
 
 @app.route("/")
@@ -105,7 +109,7 @@ def home():
     
 
 
-# In[186]:
+# In[ ]:
 
 
 print("Defining names.")
@@ -128,13 +132,13 @@ def names():
     return jsonify(list_names)
 
 
-# In[93]:
+# In[ ]:
 
 
 # print(names())
 
 
-# In[77]:
+# In[ ]:
 
 
 print("Defining otu.")
@@ -158,14 +162,14 @@ def otu():
     
 
 
-# In[92]:
+# In[ ]:
 
 
 # Test otu functions.
 # print(otu())
 
 
-# In[134]:
+# In[ ]:
 
 
 print("Defining metadata/<sample>.")
@@ -198,13 +202,13 @@ def metadata(sample):
     
 
 
-# In[136]:
+# In[ ]:
 
 
 # metadata("BB_944")
 
 
-# In[137]:
+# In[ ]:
 
 
 print("Defining wfreq(sample).")
@@ -231,13 +235,13 @@ def wfreq(sample):
     return jsonify(dict_metadata)
 
 
-# In[139]:
+# In[ ]:
 
 
 # wfreq("BB_944")
 
 
-# In[181]:
+# In[ ]:
 
 
 print("Defining samples(sample)")
@@ -293,7 +297,7 @@ def samples(sample):
     return jsonify(list_samples)
 
 
-# In[183]:
+# In[ ]:
 
 
 # samples('BB_944')
@@ -303,7 +307,15 @@ def samples(sample):
 
 
 if __name__ == "__main__":
-    # app.run(debug=True)
-    from os import environ
-    print("Port", environ.get("PORT", "Not Found"))
-    app.run(debug=False, host='0.0.0.0', port=int(environ.get("PORT", 5000)))
+    hostname = socket.gethostname()
+    print("socket.hostname():", hostname)
+    
+    if (hostname == 'XPS'):
+        app.run(debug=True)
+    elif (hostname == 'DESKTOP-S08TN4O'):  
+        app.run(debug=True)
+    else:
+        from os import environ
+        print("Port", environ.get("PORT", "Not Found"))
+        app.run(debug=False, host='0.0.0.0', port=int(environ.get("PORT", 5000)))
+
