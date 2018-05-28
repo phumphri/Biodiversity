@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-3">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>Participants</h4>
+                        <p>Select the Sample ID of the participant.</p>
+
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select
+                                <span class="caret"></span>
+                            </button>
+                            <ul id="select_sampleid" class="dropdown-menu">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading text-center">
+                        <h4>Sample MetaData</h4>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                                <li id="age" class="list-group-item">AGE: 24</li>
+                                <li id="bbtype" class="list-group-item">BBTYPE: I</li>
+                                <li id="ethnicity" class="list-group-item">ETHNICITY:  Caucasian</li>
+                                <li id="gender" class="list-group-item">GENDER: F</li>
+                                <li id="location" class="list-group-item">LOCATION: Beaufort/NC</li>
+                                <li id="ethnicity" class="list-group-item">SAMPLEID:  940</li>
+                                </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-5 text-center">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>Operational Taxonomic Unit</h4>
+                        <h5>Percentages for Participant</h5>
+
+                    </div>
+                    <div class="panel-body">
+                        <div id="pie_chart">
+                            <p>Pie Chart Goes Here</p>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div id="guage_chart" class="col-lg-4 text-center">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>Belly Button Washing Frequency</h4>
+                        <h5>Scrubs per Week</h5>
+
+                    </div>
+                    <div class="panel-body">
+                        <div id="guage_chart">
+                            <p>Guage Chart Goes Here</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p>Bubble Chart Goes Here</p>
+                        </div>
+                        <div class="panel-footer text-center">
+                            <h4>Participant v. OTU</h4>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <script src="{{ url_for('static', filename='js/dropdown_menu.js') }}"></script>
+            <script src="{{ url_for('static', filename='js/sample_metadata.js') }}"></script>
+
+
+            <!-- <select id="selDataset" onchange="optionChanged(this.value)"></select> -->
+</body>
+
+</html>
