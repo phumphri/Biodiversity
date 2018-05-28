@@ -317,5 +317,7 @@ if __name__ == "__main__":
     else:
         from os import environ
         print("Port", environ.get("PORT", "Not Found"))
+        app.options('*', cors());
+        app.use(cors());
         app.run(debug=False, host='0.0.0.0', port=int(environ.get("PORT", 5000)))
 
