@@ -3,6 +3,10 @@ url = url + window.location.hostname + ":"
 url = url + window.location.port
 url = url + "/names"
 
+
+console.log("url in dropdown_menu.js:")
+console.log(url)
+
 window.onload = function () {
 
 
