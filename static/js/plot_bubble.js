@@ -1,35 +1,49 @@
-var url = "/data";
+function plot_sample_bubble(sampleid) {
 
-function buildPlot() {
-    Plotly.d3.json(url, function(error, response) {
+    Plotly.purge('bubble_chart');
 
-        console.log(response);
+    url = "http://"
+    url = url + window.location.hostname + ":"
+    url = url + window.location.port
+    url = url + "/samples/" + sampleid
+
+    d3.json(url, function (error, response) {
+
+        if (error) {
+            console.log("d3.json failed.")
+            return console.warn(error);
+        }
+
+
         var trace1 = {
-            type: "scatter",
-            mode: "lines",
-            name: "Bigfoot Sightings",
-            x: response.map(data => data.months),
-            y: response.map(data => data.sightings),
-            line: {
-                color: "#17BECF"
+            x: response[0]["otu_ids"],
+            y: response[1]["sample_values"],
+            mode: 'markers',
+            marker: {
+                size: response[1]["sample_values"]
             }
         };
 
         var data = [trace1];
 
+
+
+
         var layout = {
-            title: "Bigfoot Sightings Per Year",
-            xaxis: {
-                type: "date"
-            },
-            yaxis: {
-                autorange: true,
-                type: "linear"
-            }
+            showlegend: false,
+            xaxis: { title: 'Operational Taxonomic Unit', range: [0, 3675] },
+            yaxis: { title: 'Values' },
+            autosize: true
         };
 
-        Plotly.newPlot("plot", data, layout);
+        Plotly.newPlot('bubble_chart', data, layout);
+
+
+
+
+
+
+
     });
 }
 
-buildPlot();

@@ -276,7 +276,9 @@ def samples(sample):
     
     sql = "select otu_id, sample[" + str(sample_index) + "] "
     sql = sql + "from belly_button.biodiversity_samples "
-    sql = sql + " order by sample[" + str(sample_index) + "] desc"
+    sql = sql + "where sample[" + str(sample_index) + "] > 0"
+    sql = sql + " order by sample[" + str(sample_index) + "] desc "
+    sql = sql + " limit 10 "
     
     rows = query_postgres(sql)
     

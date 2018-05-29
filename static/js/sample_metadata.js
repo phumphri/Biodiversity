@@ -1,33 +1,37 @@
-console.log("In sample_metadata.js")
+function select_sample_metadata(sampleid) {
 
-// dropdown_menu = document.getElementById("select_sampleid")
+    url = "http://"
+    url = url + window.location.hostname + ":"
+    url = url + window.location.port
+    url = url + "/metadata/" + sampleid
 
-var metadata_url = "/metadata/BB_944";
+    d3.json(url, function (error, response) {
 
-Plotly.d3.json(metadata_url, function (error, response) {
+        if (error) {
+            console.log("d3.json failed.")
+            return console.warn(error);
+        }
 
-    if (error) return console.warn(error);
+        metadata_list = []
+        metadata_list.push("Age: " + response["AGE"])
+        metadata_list.push("Type: " + response["BBTYPE"])
+        metadata_list.push("Ethnicity: " + response["ETHNICITY"])
+        metadata_list.push("Gender: " + response["GENDER"])
+        metadata_list.push("Location: " + response["LOCATION"])
+        metadata_list.push("Sample ID: " + response["SAMPLEID"])
 
-    console.log("Metadta:  In Plotly.d3.json.")
+        d3.select("body")
+            .selectAll(".row")
+            .selectAll(".col-lg-3")
+            .selectAll(".panel")
+            .selectAll(".panel-body")
+            .selectAll(".list-group")
+            .selectAll("li")
+            .data(metadata_list)
+            .text(function (d) { return d; })
 
-    console.log("response", response)
+    }
+    )
+}
 
-    // var sampleid_list = [response][0]
-
-    // for (i = 0; i < sampleid_list.length; i++) {
-
-    //     sampleid = sampleid_list[i]
-
-    //     console.log("sampleid:", sampleid)
-
-    //     node = document.createElement("LI");
-
-    //     textnode = document.createTextNode(sampleid);
-
-    //     node.appendChild(textnode);
-        
-    //     dropdown_menu.appendChild(node);
-    // }
-
-})
 

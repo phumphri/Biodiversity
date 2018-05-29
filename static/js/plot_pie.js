@@ -1,35 +1,28 @@
-var url = "/data";
+function plot_sample_pie(sampleid) {
 
-function buildPlot() {
-    Plotly.d3.json(url, function(error, response) {
+    url = "http://"
+    url = url + window.location.hostname + ":"
+    url = url + window.location.port
+    url = url + "/samples/" + sampleid
 
-        console.log(response);
-        var trace1 = {
-            type: "scatter",
-            mode: "lines",
-            name: "Bigfoot Sightings",
-            x: response.map(data => data.months),
-            y: response.map(data => data.sightings),
-            line: {
-                color: "#17BECF"
-            }
-        };
+    d3.json(url, function (error, response) {
 
-        var data = [trace1];
+        if (error) {
+            console.log("d3.json failed.")
+            return console.warn(error);
+        }
 
-        var layout = {
-            title: "Bigfoot Sightings Per Year",
-            xaxis: {
-                type: "date"
-            },
-            yaxis: {
-                autorange: true,
-                type: "linear"
-            }
-        };
+        data_dict = {}
+        data_dict["values"] = response[0]["otu_ids"]
+        data_dict["labels"] = response[1]["sample_values"]
+        data_dict["type"] = "pie"
+        data = [data_dict]
 
-        Plotly.newPlot("plot", data, layout);
+
+
+        var layout = {autosize:true};
+
+        Plotly.newPlot('pie_chart', data, layout);
+
     });
 }
-
-buildPlot();

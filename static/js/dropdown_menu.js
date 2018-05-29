@@ -1,30 +1,41 @@
-console.log("In dropdown_menu.js")
+url = "http://"
+url = url + window.location.hostname + ":"
+url = url + window.location.port
+url = url + "/names"
 
-dropdown_menu = document.getElementById("select_sampleid")
 
-var dropdown_url = "/names";
+window.onload = function () {
 
-Plotly.d3.json(dropdown_url, function (error, response) {
 
-    if (error) return console.warn(error);
+    d3.json(url, function (error, response) {
 
-    console.log("Dropdown:  In Plotly.d3.json.")
+        if (error) {
+            console.log("d3.json failed.")
+            return console.warn(error);
+        }
 
-    var sampleid_list = [response][0]
+        d3.select("body")
+            .select(".row")
+            .select(".col-lg-3")
+            .select(".panel")
+            .select(".panel-body")
+            .select(".dropdown")
+            .select(".dropdown-menu")
+            .selectAll("li")
+            .data(response)
+            .enter()
+            .append("li")
+            .text(function (d) { return d; })
+            .attr("class", "text-center")
+            .on("click", function (d, i) {
+                select_sample_metadata(d)
+                plot_sample_pie(d)
+                plot_sample_guage(d)
+                plot_sample_bubble(d)
+            });
 
-    for (i = 0; i < sampleid_list.length; i++) {
+    
+    })
 
-        sampleid = sampleid_list[i]
 
-        console.log("sampleid:", sampleid)
-
-        node = document.createElement("LI");
-
-        textnode = document.createTextNode(sampleid);
-
-        node.appendChild(textnode);
-        
-        dropdown_menu.appendChild(node);
-    }
-
-})
+}
