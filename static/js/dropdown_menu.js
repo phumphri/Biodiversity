@@ -1,8 +1,14 @@
+print("In dropdown_menu.js.")
+console.log("In dropdown_menu.js.")
+
+
 url = "http://"
 url = url + window.location.hostname + ":"
 url = url + window.location.port
 url = url + "/names"
 
+print("url: " + url)
+console.log("url: " + url)
 
 window.onload = function () {
 
@@ -11,9 +17,15 @@ window.onload = function () {
 
         if (error) {
             console.log("d3.json failed.")
+            print("d3.json failed.")
             return console.warn(error);
         }
 
+        console.log("response:")
+        console.log(response)
+        print("response:")
+        print(response)
+        
         d3.select("body")
             .select(".row")
             .select(".col-lg-3")
