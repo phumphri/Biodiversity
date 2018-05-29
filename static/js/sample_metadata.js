@@ -1,5 +1,7 @@
 function select_sample_metadata(sampleid) {
 
+    print("In select_sample_metadata(" + sampleid + ").")
+
     url = "http://"
     url = url + window.location.hostname + ":"
     url = url + window.location.port
