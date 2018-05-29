@@ -1,6 +1,15 @@
 function select_sample_metadata(sampleid) {
 
-    url = "https://"
+    let window_location_hostname = window.location.hostname
+    let window_location_port = window.location.port
+    var url = ""
+    
+    if (window_location_hostname = "127.0.0.1") {
+        url = "http://"
+    } else {
+        url = "https://"
+    }
+    
     url = url + window.location.hostname + ":"
     url = url + window.location.port
     url = url + "/metadata/" + sampleid

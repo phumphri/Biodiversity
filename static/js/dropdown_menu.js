@@ -1,6 +1,16 @@
-url = "https://"
-url = url + window.location.hostname + ":"
-url = url + window.location.port
+let window_location_hostname = window.location.hostname
+let window_location_port = window.location.port
+var url = ""
+
+if (window_location_hostname = "127.0.0.1") {
+    url = "http://"
+} else {
+    url = "https://"
+}
+
+// url = "http://"
+url = url + window_location_hostname + ":"
+url = url + window_location_port
 url = url + "/names"
 
 
@@ -38,7 +48,7 @@ window.onload = function () {
                 plot_sample_bubble(d)
             });
 
-    
+
     })
 
 
