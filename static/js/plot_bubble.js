@@ -2,7 +2,7 @@ function plot_sample_bubble(sampleid) {
 
     Plotly.purge('bubble_chart');
 
-    url = "http://"
+    url = "https://"
     url = url + window.location.hostname + ":"
     url = url + window.location.port
     url = url + "/samples/" + sampleid

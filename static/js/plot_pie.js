@@ -1,6 +1,6 @@
 function plot_sample_pie(sampleid) {
 
-    url = "http://"
+    url = "https://"
     url = url + window.location.hostname + ":"
     url = url + window.location.port
     url = url + "/samples/" + sampleid

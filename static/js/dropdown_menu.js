@@ -2,7 +2,7 @@ print("In dropdown_menu.js.")
 console.log("In dropdown_menu.js.")
 
 
-url = "http://"
+url = "https://"
 url = url + window.location.hostname + ":"
 url = url + window.location.port
 url = url + "/names"
@@ -25,7 +25,7 @@ window.onload = function () {
         console.log(response)
         print("response:")
         print(response)
-        
+
         d3.select("body")
             .select(".row")
             .select(".col-lg-3")

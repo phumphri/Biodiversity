@@ -2,7 +2,7 @@ function plot_sample_guage(sampleid) {
 
     Plotly.purge('gauge_chart')
 
-    url = "http://"
+    url = "https://"
     url = url + window.location.hostname + ":"
     url = url + window.location.port
     url = url + "/wfreq/" + sampleid
