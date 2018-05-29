@@ -33,7 +33,9 @@ function plot_sample_bubble(sampleid) {
             showlegend: false,
             xaxis: { title: 'Operational Taxonomic Unit', range: [0, 3675] },
             yaxis: { title: 'Values' },
-            autosize: true
+            autosize: false,
+            height: 500,
+            width:  1000
         };
 
         Plotly.newPlot('bubble_chart', data, layout);
