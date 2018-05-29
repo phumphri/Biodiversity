@@ -12,8 +12,8 @@ function plot_sample_guage(sampleid) {
         url = "https://"
     }
     
-    url = url + window.location.hostname + ":"
-    url = url + window.location.port
+    url = url + window_location_hostname + ":"
+    url = url + window_location_port
     url = url + "/wfreq/" + sampleid
 
     d3.json(url, function (error, response) {
