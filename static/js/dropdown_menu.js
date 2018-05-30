@@ -24,7 +24,6 @@ window.onload = function () {
 
         if (error) {
             console.log("d3.json failed.")
-            print("d3.json failed.")
             return console.warn(error);
         }
 
