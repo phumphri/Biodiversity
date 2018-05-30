@@ -262,6 +262,10 @@ def samples(sample):
     list_sample_values = []
     dict_sample_values = {}
     dict_sample_values['sample_values'] = list_sample_values
+
+    list_otu_desc = []
+    dict_otu_desc = {}
+    dict_otu_desc['otu_desc'] = list_otu_desc
     
     list_samples = [dict_out_id, dict_sample_values]
     
@@ -274,8 +278,8 @@ def samples(sample):
     
     sample_index = list(rows[0])[0]
     
-    sql = "select otu_id, sample[" + str(sample_index) + "] "
-    sql = sql + "from belly_button.biodiversity_samples "
+    sql = "select otu_id, sample[" + str(sample_index) + "], lowest_taxonomic_unit_found "
+    sql = sql + "from belly_button.biodiversity_samples join belly_button.biodiversity_otu_id using (otu_id) "
     sql = sql + "where sample[" + str(sample_index) + "] > 0"
     sql = sql + " order by sample[" + str(sample_index) + "] desc "
     sql = sql + " limit 10 "
@@ -290,11 +294,13 @@ def samples(sample):
 #         print(list_row)
         list_otu_id.append(list_row[0])
         list_sample_values.append(list_row[1])
+        list_otu_desc.append(list_row[2])
     
     dict_out_id['otu_ids'] = list_otu_id
     dict_sample_values['sample_values'] = list_sample_values
+    dict_otu_desc['otu_desc'] = list_otu_desc
     
-    list_samples = [dict_out_id, dict_sample_values]
+    list_samples = [dict_out_id, dict_sample_values, dict_otu_desc]
     
     return jsonify(list_samples)
 

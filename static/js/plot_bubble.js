@@ -7,7 +7,7 @@ function plot_sample_bubble(sampleid) {
     var url = ""
     
     if (window_location_hostname = "127.0.0.1") {
-        url = "http://"
+        url = "https://"
     } else {
         url = "https://"
     }
