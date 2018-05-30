@@ -2,8 +2,8 @@ function plot_sample_guage(sampleid) {
 
     Plotly.purge('gauge_chart')
 
-    let window_location_hostname = window.location.hostname
-    let window_location_port = window.location.port
+    var window_location_hostname = window.location.hostname
+    var window_location_port = window.location.port
     var url = ""
     
     if (window_location_hostname = "127.0.0.1") {

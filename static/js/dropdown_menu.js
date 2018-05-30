@@ -1,5 +1,6 @@
-let window_location_hostname = window.location.hostname
-let window_location_port = window.location.port
+var window_location_hostname = window.location.hostname
+var window_location_port = window.location.port
+var window_location_host = window.location.host 
 var url = ""
 
 if (window_location_hostname = "127.0.0.1") {
@@ -16,6 +17,8 @@ url = url + "/names"
 
 console.log("url in dropdown_menu.js:")
 console.log(url)
+console.log("window.location.host:")
+console.log(window_location_host)
 
 window.onload = function () {
 
