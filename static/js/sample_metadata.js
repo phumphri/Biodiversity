@@ -1,18 +1,7 @@
 function select_sample_metadata(sampleid) {
 
-    var window_location_hostname = window.location.hostname
-    var window_location_port = window.location.port
-    var url = ""
-    
-    if (window_location_hostname = "127.0.0.1") {
-        url = "http://"
-    } else {
-        url = "https://"
-    }
-    
-    url = url + window.location.hostname + ":"
-    url = url + window.location.port
-    url = url + "/metadata/" + sampleid
+
+    url = "https://" + window.location.host + "/metadata/" + sampleid
 
     d3.json(url, function (error, response) {
 

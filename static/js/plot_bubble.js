@@ -2,19 +2,7 @@ function plot_sample_bubble(sampleid) {
 
     Plotly.purge('bubble_chart');
 
-    var window_location_hostname = window.location.hostname
-    var window_location_port = window.location.port
-    var url = ""
-    
-    if (window_location_hostname = "127.0.0.1") {
-        url = "http://"
-    } else {
-        url = "https://"
-    }
-    
-    url = url + window_location_hostname + ":"
-    url = url + window_location_port
-    url = url + "/samples/" + sampleid
+    url = "https://" + window.location.host +  "/samples/" + sampleid
 
     d3.json(url, function (error, response) {
 
