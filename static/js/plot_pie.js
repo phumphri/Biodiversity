@@ -5,7 +5,7 @@ function plot_sample_pie(sampleid) {
     var url = ""
     
     if (window_location_hostname = "127.0.0.1") {
-        url = "https://"
+        url = "http://"
     } else {
         url = "https://"
     }
